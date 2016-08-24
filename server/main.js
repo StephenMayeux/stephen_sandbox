@@ -14,5 +14,9 @@ Meteor.startup(() => {
         avatar: image.avatar()
       });
     });
-  }  
+  }
+
+  Meteor.publish('all.profiles', function() {
+    return Profiles.find({});
+  });
 });

@@ -8,7 +8,6 @@ export default (props) => {
     <div>
       <Header />
       <div className="container">
-        <h1>Hello SandBox!!</h1>
         {props.children}
       </div>
       <Footer />
