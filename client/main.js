@@ -5,11 +5,13 @@ import { Profiles } from '../imports/collections/profiles';
 
 import App from './components/app';
 import ProfileList from './components/profiles/profile_list';
+import Account from './components/account';
 
 const routes = (
   <Router history={browserHistory}>
     <Route path='/' component={App}>
       <IndexRoute component={ProfileList}/>
+      <Route path='account' component={Account} />
     </Route>
   </Router>
 );

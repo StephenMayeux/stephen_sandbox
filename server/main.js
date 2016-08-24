@@ -19,4 +19,9 @@ Meteor.startup(() => {
   Meteor.publish('all.profiles', function() {
     return Profiles.find({});
   });
+
+  Accounts.onCreateUser(function(options, user) {
+    Profiles.insert({ _id: user._id, name: '', email: '', phone: '', avatar: '' });
+    return user;
+  });
 });
