@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { IndexLink, Link } from 'react-router';
+import Accounts from './accounts/accounts';
+import { createContainer } from 'meteor/react-meteor-data';
 
 class Header extends Component {
   render() {
@@ -18,9 +20,22 @@ class Header extends Component {
           </div>
           <div id="navbar" className="navbar-collapse collapse">
             <ul className="nav navbar-nav">
-              <li><IndexLink to="/" activeStyle={active}>Home</IndexLink></li>
+              { this.props.currentUser ?
+                <ul className="nav navbar-nav">
+                  <li>
+                    <Link to="/account" activeStyle={active} >My Profile</Link>
+                  </li>
+                  <li>
+                    <Accounts />
+                  </li>
+                </ul> :
+                <ul className="nav navbar-nav">
+                    <li>
+                      <Accounts />
+                    </li>
+                </ul>
+              }
             </ul>
-            {/*Accounts go here*/}
           </div>
         </div>
       </nav>
@@ -28,4 +43,8 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default createContainer(() => {
+  return {
+    currentUser: Meteor.user()
+  };
+}, Header);
